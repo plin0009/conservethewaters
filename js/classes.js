@@ -19,9 +19,9 @@ class Space {
         return layer;
     }
     reset() {
-        for (let i = this.layers.length - 1; i >= 0; i--) {
-            this.layers[i].object.remove();
-            delete this.layers[this.layers[i].name];
+        while(this.layers.length) {
+            this.layers[0].object.remove();
+            delete this.layers[this.layers[0].name];
             this.layers.shift();
         }
         this.click = () => {};
@@ -62,6 +62,11 @@ class Layer {
         });
         return this;
     }
+    removeSprite(sprite) {
+        this.children.splice(this.children.indexOf(sprite), 1);
+        delete this.children[sprite.name];
+        sprite.object.remove();
+    }
 }
 
 class Sprite {
@@ -71,6 +76,7 @@ class Sprite {
         this.scale = scale;
         this.scaleOn = scaleOn;
         this.position = position;
+        this.rotation = 0;
     }
     exist() {
         this.update();
@@ -82,6 +88,7 @@ class Sprite {
     }
     updateScale() {
         this.object.scale(this.scale * paper.view.viewSize[this.scaleOn] / this.object.bounds[this.scaleOn]);
+        this.object.rotation = this.rotation;
     };
     updatePosition() {
         this.object.position = new paper.Point(this.position.x * paper.view.viewSize.width, this.position.y * paper.view.viewSize.height);
@@ -93,6 +100,32 @@ class Symbol extends Sprite {
         super(name, scale, position, scaleOn);
         this.object = new paper.SymbolItem(symbol);
         this.exist();
+    }
+}
+class Raster extends Sprite {
+    constructor(name, raster, scale, position, scaleOn) {
+        super(name, scale, position, scaleOn);
+        this.object = raster;
+        this.exist();
+    }
+}
+class Rect extends Sprite {
+    constructor(name, color, scaleX, scaleY, position) {
+        super(name, scaleX, position);
+        this.scaleX = scaleX;
+        this.scaleY = scaleY;
+        this.object = new paper.Path.Rectangle({
+            from: [-100, -100],
+            to: [100, 100]
+        });
+        this.object.fillColor = color;
+        this.exist();
+    }
+    updateScale() {
+        this.object.scale(this.scaleX * paper.view.viewSize.width / this.object.bounds.width, this.scaleY * paper.view.viewSize.height / this.object.bounds.height);
+    };
+    updateColor(color) {
+        this.object.fillColor = color;
     }
 }
 
@@ -147,7 +180,7 @@ class Button extends Sprite {
         this.button.strokeWidth = 8;
         this.object.addChild(this.button);
         this.label = labelObject;
-        this.label.scale(0.5);
+        this.label.scale(0.7);
         this.object.addChild(this.label);
         this.rest();
         this.exist();
@@ -170,10 +203,10 @@ class Button extends Sprite {
 }
 
 class Game {
-    constructor() {
-
+    constructor(space) {
+        this.space = space;
     }
     update() {
-        
+        this.space.update();
     }
 }
