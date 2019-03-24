@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Capriola" rel="stylesheet">
+    <link rel="stylesheet" href="support.css">    
+    <title>Support the Project - Conserve the Waters</title>
+</head>
+<body>
+    <div id="container">
+        <h1>Support the Mission!</h1>
+        <div id="form">
+            <input type="text" id="name" placeholder="Name">
+            <textarea id="support" placeholder="supports..."></textarea>
+            <input type="submit" id="submit" value="Submit" onclick="submit()">
+        </div>
+        <div id="supporters">
+            <div class="supporter">
+                <h3>Emily</h3>
+                <p>supports the mission by vowing not to wash her car in the driveway.</p>
+                <h3>Joe</h3>
+                <p>supports the mission by donating money towards restoration of wetlands.</p>
+                <h3>Peter Lin</h3>
+                <p>supports the mission by teaching family to make smart choices to keep our clean water.</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        const submit = () => {
+            let name = document.getElementById('name').value;
+            let support = document.getElementById('support').value;
+            document.getElementById('name').value = '';
+            document.getElementById('support').value = '';
+            let supporter = document.createElement('div');
+            supporter.className = 'supporter';
+            let nameDisplay = document.createElement('h3');
+            nameDisplay.innerText = name;
+            let supportDisplay = document.createElement('p');
+            supportDisplay.innerText = support;
+            supporter.append(nameDisplay, supportDisplay);
+            document.getElementById('supporters').prepend(supporter);
+        }
+    </script>
+</body>
+</html>

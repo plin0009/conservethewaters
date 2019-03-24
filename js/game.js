@@ -1,7 +1,7 @@
 let space = new Space();
 const SYMBOLS = {
-    runoff: ['fertilizer', 'pill', 'insecticide', 'share'], // todo
-    trash: ['bucket', 'bottle1', 'bottle2', 'can1', 'can2', 'cup1', 'cup2', 'share'],
+    runoff: ['fertilizer', 'pill', 'insecticide', 'share', 'support'], // todo
+    trash: ['bucket', 'bottle1', 'bottle2', 'can1', 'can2', 'cup1', 'cup2', 'share', 'support'],
     wetlands: ['water', 'water2', 'water3', 'water4'],
 };
 openGame = async (game) => {
@@ -193,8 +193,11 @@ class RunoffGame extends Game {
         snapshot.rotate(2);
         this.space.addLayer(new Layer('share'))
         .addSprite(new Text('', 'Challenge your friends!', 'header', 0.8, {x:0.5,y:0.15}))
-        .addSprite(new Text('', 'Spread awareness by sharing your score!', '', 0.8, {x:0.5,y:0.3}))
-        .addSprite(new Button('share', new paper.SymbolItem(this.space.symbols.share), () => {}, 0.2, {x:0.5, y:0.8}));
+        .addSprite(new Text('', 'Spread awareness by sharing your score!', '', 0.8, {x:0.5,y:0.25}))
+        .addSprite(new Text('', 'Did you know?', '', 0.3, {x:0.5,y:0.9}))
+        .addSprite(new Text('', randomFact(), '', 0.8, {x:0.5,y:0.95}))
+        .addSprite(new Button('share', new paper.SymbolItem(this.space.symbols.share), () => window.open('https://www.facebook.com/sharer.php?u=https%3A%2F%2Fplin0009.github.io%2Fconservethewaters%2F', '_blank'), 0.2, {x:0.35, y:0.8}))
+        .addSprite(new Button('support', new paper.SymbolItem(this.space.symbols.support), () => window.open('support.html', '_blank'), 0.2, {x:0.65, y:0.8}));
         this.space.show();
     }
 }
@@ -322,7 +325,8 @@ class TrashGame extends Game {
         .addSprite(new Text('', 'Spread awareness by sharing your score!', '', 0.8, {x:0.5,y:0.25}))
         .addSprite(new Text('', 'Did you know?', '', 0.3, {x:0.5,y:0.9}))
         .addSprite(new Text('', randomFact(), '', 0.8, {x:0.5,y:0.95}))
-        .addSprite(new Button('share', new paper.SymbolItem(this.space.symbols.share), () => {}, 0.2, {x:0.5, y:0.8}));
+        .addSprite(new Button('share', new paper.SymbolItem(this.space.symbols.share), () => window.open('https://www.facebook.com/sharer.php?u=https%3A%2F%2Fplin0009.github.io%2Fconservethewaters%2F', '_blank'), 0.2, {x:0.35, y:0.8}))
+        .addSprite(new Button('support', new paper.SymbolItem(this.space.symbols.support), () => window.open('support.html', '_blank'), 0.2, {x:0.65, y:0.8}));
         this.space.show();
     }
 }
@@ -345,7 +349,11 @@ class WetlandsGame extends Game {
 
 const randomFact = () => {
     const facts = [
-        'Fertilizers contain nutrients which encourage algae growth, making the water undrinkable.'
+        'Fertilizers in runoff pollution causes algae blooms, which makes water toxic to us.',
+        'Water pollution is the most critical environment concern after air pollution.',
+        'Wash your car in the car wash instead of your driveway.',
+        'Wetlands are naturall a filter to our lakes, thus they are crucial to conserve.',
+        'Don\'t dump anything down the stormwater drains!',
     ];
     return facts[Math.floor(Math.random() * facts.length)];
 }

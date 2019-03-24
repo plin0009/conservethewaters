@@ -1,0 +1,35 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: #cceeff;
+    font-family: 'Corbel Light', sans-serif;
+    /* background-color: #cceeff; */
+}
+#container {
+    display: block;
+    width: 70%;
+    margin: auto;
+}
+input, textarea {
+    font-family: inherit;
+}
+#support {
+    width: 100%;
+}
+#form {
+    display: flexbox;
+    flex-direction: row;
+}
+h1, h3 {
+    font-family: 'Capriola', sans-serif;
+    font-size: 200%;
+    font-weight: 300;
+    color: #009ad6;
+    
+}
+p {
+    font-family: 'Corbel Light', sans-serif;
+    margin: 0;
+    font-size: 200%;
+    color: #134597;
+}
