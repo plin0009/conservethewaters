@@ -362,6 +362,9 @@ const randomFact = () => {
         'Wash your car in the car wash instead of your driveway.',
         'Wetlands are naturall a filter to our lakes, thus they are crucial to conserve.',
         'Don\'t dump anything down the stormwater drains!',
+        'Pharmaceuticals and toxic chemicals should never be flushed down the drain!',
+        'Phosphorus pollution from agricultural and urban sources cause algae blooms.',
+        'Please pick up after your pet!'
     ];
     return facts[Math.floor(Math.random() * facts.length)];
 }

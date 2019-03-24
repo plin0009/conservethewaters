@@ -26,8 +26,10 @@ Perhaps most importantly, I learned a lot about the situation of our Great Lakes
 ## What's next for Conserve the Waters
 24 hours is certainly not enough for me to complete the vision I have in mind. Here's a to-do list:
 * Implement a built-in leader-board system
+* Increase the visual appeal of the website
 * Plug in more bits of information to better educate users
 * Finish the Wetlands minigame
 * Make sharing the site easy and efficient
 * Make a section for pledges and allow users to sign for support
 
+* Integrate Facebook Messenger's Instant Games features into the mini-games to allow for friends to play and share on Messenger
