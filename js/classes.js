@@ -2,7 +2,10 @@ class Space {
     constructor() {
         this.symbols = {};
         this.layers = [];
+        this.showing = false;
+        window.onclick = () => this.showing && this.click();
     }
+    click(){}
     loadSymbol(name) {
         return new Promise((resolve, reject) => {
             paper.project.importSVG(`img/${name}.svg`, item => {
@@ -21,10 +24,12 @@ class Space {
             delete this.layers[this.layers[i].name];
             this.layers.shift();
         }
+        this.click = () => {};
+        this.showing = false;
     }
     show() {
+        this.showing = true;
         for (let i = 0; i < this.layers.length; i++) {
-            console.log(i, this.layers.length);
             this.layers[i].object.visible = this.layers[i].visible;
         }
     }
@@ -55,7 +60,6 @@ class Layer {
         (sprite.created && this.object.addChild(sprite.object)) || (sprite.created = () => {
             this.object.addChild(sprite.object);
         });
-        console.log(sprite);
         return this;
     }
 }
@@ -111,8 +115,8 @@ class Text extends Sprite {
                 break;
             default:
                 this.style = {
-                    color: '#ffffff',
-                    font: 'Arial'
+                    color: '#134597',
+                    font: 'Corbel Light'
                 };
         }
         this.object = new paper.PointText({
@@ -162,5 +166,14 @@ class Button extends Sprite {
     down() {
         this.button.strokeColor = '#009ac6';
         this.button.fillColor = '#008ac6';
+    }
+}
+
+class Game {
+    constructor() {
+
+    }
+    update() {
+        
     }
 }
