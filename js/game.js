@@ -1,7 +1,7 @@
 let space = new Space();
 const SYMBOLS = {
     runoff: ['fertilizer', 'pill', 'insecticide', 'share', 'support'], // todo
-    trash: ['bucket', 'bottle1', 'bottle2', 'can1', 'can2', 'cup1', 'cup2', 'wave', 'share', 'support'],
+    trash: ['bucket', 'bottle1', 'bottle2', 'can1', 'can2', 'cup1', 'cup2', 'share', 'support'],
     wetlands: ['water', 'water2', 'water3', 'water4'],
 };
 openGame = async (game) => {
