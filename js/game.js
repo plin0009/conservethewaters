@@ -1,7 +1,7 @@
 let space = new Space();
 const SYMBOLS = {
     runoff: ['fertilizer', 'pill', 'insecticide', 'share', 'support'], // todo
-    trash: ['bucket', 'bottle1', 'bottle2', 'can1', 'can2', 'cup1', 'cup2', 'share', 'support'],
+    trash: ['bucket', 'bottle1', 'bottle2', 'can1', 'can2', 'cup1', 'cup2', 'wave', 'share', 'support'],
     wetlands: ['water', 'water2', 'water3', 'water4'],
 };
 openGame = async (game) => {
@@ -237,10 +237,12 @@ class TrashGame extends Game {
         this.livesDisplay = new Text('lives', `${this.lives} lives`, '', 0.1, {x:0.5,y:0.1});
         this.scoreDisplay = new Text('score', '0', 'number', 0.1, {x:0.5,y:0.3}, 'height');
         this.lake = new Rect('lake', '#009ad6', 1, 0.1, {x:0.5,y:0.95});
+        //this.wave = new Symbol('wave', space.symbols.wave, 0.2, {x:1.5,y:0.88});
         this.background = this.space.addLayer(new Layer('background'))
         .addSprite(this.backdrop);
         this.nature = this.space.addLayer(new Layer('nature'))
-        .addSprite(this.lake);
+        .addSprite(this.lake)
+        //.addSprite(this.wave);
         this.ui = this.space.addLayer(new Layer('ui'))
         .addSprite(this.livesDisplay)
         .addSprite(this.scoreDisplay);
@@ -251,6 +253,8 @@ class TrashGame extends Game {
 
         window.onmousedown = () => this.held = true;
         window.onmouseup = () => this.held = false;
+        window.onkeydown = () => this.held = true;
+        window.onkeyup = () => this.held = false;
     }
     update() {
         if (this.stopped) {
@@ -259,6 +263,10 @@ class TrashGame extends Game {
                 this.over = true;
             }
         }
+        /* this.wave.position.x -= 0.01;
+        if (this.wave.position.x < -0.5) {
+            this.wave.position.x = 1.5;
+        } */
         this.cooldown--;
         if (!this.cooldown) {
             let garbage = ['bottle1', 'bottle2', 'can1', 'can2', 'cup1', 'cup2'][Math.floor(Math.random() * 6)];
